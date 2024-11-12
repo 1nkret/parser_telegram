@@ -1,0 +1,7 @@
+.venv/
+media/
+.env
+session_name.session
+session_name.session-journal
+settings_save.json
+

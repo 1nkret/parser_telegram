@@ -1,0 +1,316 @@
+Categories:
+
+python
+categories = {
+    "new_node": 0,
+    "update_node": 0,
+    "irl_post": 0,
+    "result": 0,
+    "reminder": 0,
+    "other": 0,
+    "fast_airdrop": 0,
+    "new_project": 0,
+    "update_project": 0
+}
+
+Category Descriptions:
+**fast_airdrop:**
+* **Focus:**  Immediate rewards for simple actions.
+* **Key Features:**
+    * Straightforward tasks (registration, NFT minting, completing a task on a platform).
+    * Low or no cost to participate.
+    * Almost instant rewards.
+    * No long-term commitment or complex technical requirements.
+    * **May or may not include the #update tag** (as long as the focus is on quick reward distribution).
+Example:
+1. ```Autonomous Finance Airdrop (ARWEAVE)
+
+Reward: 3,000 $AGENT
+Winners: FCFS Based
+
+Link:
+https://agent.autonomous.finance/claim
+
+➖ Connect with Arweave Wallet (BURNER)
+➖ Complete all tasks
+ Done!
+
+Note:
+Rewards land instantly—join as soon as possible before it’s too late. ⏰```
+2. ```#update
+
+DΞX ~ Story Protocol Badge (STORY)
+
+Link:
+https://story.d3x.exchange/odyssey-proposal
+
+➖ Connect your metamask wallet
+➖ Complete all tasks
+➖ Claim Badge
+Done!```
+3. ```#update
+
+Claim NFT Zero Updates 👀
+
+Link:
+https://docs.zero.network/build-on-zero/try-zero
+
+➖ Connect Zerion Wallet > Claim NFT
+➖ 100% free doesn't need fee, just use Zerion Wallet.
+Done!```
+
+
+
+**new_project:**
+* **Focus:**  Announcing new platforms, products, or projects in development or launching soon.
+* **Key Features:**
+    * Emphasizes **future** opportunities for participation and earning rewards.
+    * Outlines long-term tasks or interactions that extend beyond a single simple task.
+    * May include waitlists, beta versions, or announcements of tasks that lead to future participation.
+    * **Never includes the tag #update.**
+Example:
+1. ```Magic Newton Waitlist
+
+Magic Newton unifies the fragmented world of web3.
+
+Link:
+https://www.magicnewton.com/
+
+➖ Submit your Email
+ Done!```
+2. ```Hello, GN HCA Family!
+
+As we prepare to launch our website, we’d love for you to be part of it. Share your feedback on your experience with Happy Cuan Airdrop, and we'll select the top 3 to feature.
+
+What’s in it for you?
+▫️ Your feedback showcased on our website
+▫️ OG role
+
+Please use this format
+Name:
+Profession:
+Feedback:
+
+Good luck ❤```
+3. ```Spotlight Protocol Waitlist (EVM)
+
+Link:
+https://spotlightprotocol.com/ (https://spotlightprotocol.com/?utm_source=0x6F5dA981982011F1aC2ec345b5C2681C16298f2E&utm_medium=spotlight_card&utm_campaign=referral&my_spotlight=https%3A%2F%2Fstorage.googleapis.com%2Fportto-prod-spotlight-card%2F4dfa3dc9-8bd9-4771-a807-523b87d1cb63.png%3Fv%3D1731163537#userCard)
+
+▫️ Connect Wallet Metamask
+▫️ Connect Twitter
+▫️ Share your Spotlight
+Done!
+
+Good luck
+
+====================
+Link to post (https://t.me/HappyCuanAirdrop/22502)```
+
+
+
+**update_project:**
+* **Focus:**  Providing updates on ongoing projects, platforms, or products.
+* **Key Features:**
+    * Updates on the progress of ongoing projects, testnets, or other phases.
+    * Tasks or actions required to qualify for *future* rewards, often with deadlines.
+    * Participation needed before milestones or events (e.g., testnet phases, claim deadlines).
+    * Rewards or benefits are tied to involvement over time and can be earned by completing specific tasks or meeting conditions.
+    * May include links to platforms or actions that contribute to the project’s future outcomes.
+    * **Often uses tags like #update but focuses on ongoing involvement.**
+Example:
+1. ```#update
+
+Swisstronik Tesnet 2.0 Officialy Ended
+
+if you have done it congratulations, hopefully we print money again
+
+➖ The landing page and Dashboard are offline, marking the end of the campaign.
+➖ They are finalizing the reward pool distribution and will announce the total rewards and allocation soon.
+➖ By November 20, they will release a wallet-AP formatted file showing individual earnings.
+
+Source:
+https://discord.com/channels/(LINK)```
+2. ```#update
+
+The Season 1 Snapshot will be taken on November 21 at 14:00 UTC 📸
+Before then, you must complete your SuperFrens NFT collection (your Frens List) to maximize your Season XP boost.
+
+Details:
+https://x.com/superformxyz/status/```
+3. ```#update
+
+Save the Date!
+
+The WalletConnect Token (WCT) Claim and Stake will go live on November 26
+
+Details:
+https://x.com/WalletConnect/status/```
+
+
+
+* **new_node:**
+* **Key Features**
+    * Posts announcing a new node.
+    * Information about chain rewards.
+    * Software relevant for hosting nodes.
+Example:
+1. ```PWR Chain Incentivized Node (EVM)
+
+Reward: Confirmed
+
+Minimum specs:
+▫️ 1 vCPU
+▫️ 1 GB RAM
+▫️ 25 GB Storage
+
+1. Register as validator through Discord -> Open ticket:
+https://discord.gg/BD2YGpFk
+
+2. Run the node using our automation:
+wget https://raw.githubusercontent.com/dante4rt/Ramanode-Guides/main/PWR/install.sh && chmod +x install.sh && ./install.sh
+
+
+3. Install PWR Wallet:
+https://chromewebstore.google.com/u/3/detail/pwr-wallet/kennjipeijpeengjlogfdjkiiadhbmjl
+
+4. Get private key, import to PWR Wallet:
+cd pwr-hca && java -jar validator.jar get-private-key password
+
+
+5. Claim faucet on Discord -> #bot-commands channel, with command /claim your_validator_address.
+6. Done!
+
+Note:
+If you can't import wallet from node, ensure you add a '0' before your private key. For example, if your private key is 6152xxxx, enter it as 06152xxxx in the PWR Wallet.
+
+Details:
+https://x.com/pwrlabs/status/1815213214046486528```
+2. ```PWR Chain Incentivized Node (EVM)
+
+Reward: Confirmed
+
+Minimum specs:
+▫️ 1 vCPU
+▫️ 1 GB RAM
+▫️ 25 GB Storage
+
+1. Register as validator through Discord -> Open ticket:
+https://discord.gg/BD2YGpFk
+
+2. Run the node using our automation:
+wget https://raw.githubusercontent.com/dante4rt/Ramanode-Guides/main/PWR/install.sh && chmod +x install.sh && ./install.sh
+
+
+3. Install PWR Wallet:
+https://chromewebstore.google.com/u/3/detail/pwr-wallet/kennjipeijpeengjlogfdjkiiadhbmjl
+
+4. Get private key, import to PWR Wallet:
+cd pwr-hca && java -jar validator.jar get-private-key password
+
+
+5. Claim faucet on Discord -> #bot-commands channel, with command /claim your_validator_address.
+6. Done!
+
+Note:
+If you can't import wallet from node, ensure you add a '0' before your private key. For example, if your private key is 6152xxxx, enter it as 06152xxxx in the PWR Wallet.
+
+Details:
+https://x.com/pwrlabs/status/1815213214046486528```
+
+
+
+**update_node:**
+* **Focus:**  Updates or modifications required for existing nodes in blockchain or decentralized networks.
+* **Key Features:**
+    * Information on updates or changes needed for previously set up nodes (e.g., software updates, version upgrades).
+    * Instructions for upgrading or modifying the node setup.
+    * Requirements or steps needed to maintain or optimize node performance.
+    * Links to necessary resources (e.g., GitHub repositories, installation scripts, update commands).
+    * May include troubleshooting advice for users encountering issues during updates.
+    * **The emphasis is on technical updates and maintenance for existing nodes.**
+Example
+1. ```#update
+
+If you joined on PWR Chain Incentivized Node Testnet, lets update our PWR Node to the latest version
+
+Simply run this inside your Screen:
+
+ufw allow 8085 && ufw allow 8231 && ufw allow 7621 && ufw reload && SERVER_IP=$(hostname -I | awk '{print $1}') && sudo rm -rf blocks validator.jar config.json rocksdb && DOWNLOAD_URL=$(curl -s https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest | jq -r '.assets[] | select(.name == "validator.jar") | .browser_download_url') && wget "$DOWNLOAD_URL" -O validator.jar && wget https://github.com/pwrlabs/PWR-Validator/raw/refs/heads/main/config.json && sudo pkill -f java && sudo java -jar validator.jar password "$SERVER_IP" --compression-level 0
+
+And, re-claim your PWR faucet:
+https://discord.com/channels/
+
+====================
+Link to post (https://t.me/HappyCuanAirdrop/22575)```
+2. ```#update
+
+if you joined the NodePay Incentivized Beta Testnet now you can link your solana wallet in the earnings tab
+
+➖ Once verified, your email and SOLANA wallet address cannot be changed
+➖ Wallet connection is unavailable on iOS/Android for now
+➖ No deadline for wallet connection—proceed at your own pace
+
+Note:
+Proof of Humanity Medal is required
+
+Source:
+https://discord.com/channels/```
+3. ```#update
+
+If you joined on PWR Chain Incentivized Node Testnet, lets update our PWR Node to the latest version
+
+Simply run this inside your Screen:
+
+ufw allow 8085 && ufw allow 8231 && ufw allow 7621 && ufw reload && SERVER_IP=$(hostname -I | awk '{print $1}') && sudo rm -rf blocks validator.jar config.json rocksdb && DOWNLOAD_URL=$(curl -s https://api.github.com/repos/pwrlabs/PWR-Validator/releases/latest | jq -r '.assets[] | select(.name == "validator.jar") | .browser_download_url') && wget "$DOWNLOAD_URL" -O validator.jar && wget https://github.com/pwrlabs/PWR-Validator/raw/refs/heads/main/config.json && sudo pkill -f java && sudo java -jar validator.jar password "$SERVER_IP" --compression-level 0
+
+And, re-claim your PWR faucet:
+https://discord.com/channels/```
+
+
+
+**result:**
+* **Focus:**  Announcing the outcomes of tasks, campaigns, or airdrops.
+* **Key Features:**
+    * Focus on the completion of a process or event.
+    * Informing participants about the results, including rewards, allocations, and verification links.
+    * No new tasks or long-term commitments, purely about past actions.
+    * Short-term updates, dealing with immediate results from recent events.
+Example:
+1. ```#update
+
+Check your result
+
+Link:
+https://coinmarketcap.com/community/post/342662086/```
+2. ```Its worth:
+3,000 $AGENT = ~1.45 $AR = ~$26
+
+Market:
+https://botega.ar.io/#/swap?from=8rbAftv7RaPxFjFk5FGUVAVCSjGQB4JHDcb9P9wCVhQ&to=NG-0lVX882MG5nhARrSzyprEK6ejonHpdUmaaMPsHE8
+
+10 accounts, 100 accounts, 1000 accounts? You know what to do.```
+3. ```#update
+
+If you pre-ordered the Solana Saga Phone and hold the "Chapter 2 Pre-Order Token" NFT, check your wallet—you’ll receive the Happy Cat ($HAPPY) token!```
+4. ```#update
+
+$PGC has been distributed, check your account```
+
+
+**other:**
+* **Focus:**  Miscellaneous content that doesn't fit into any other category.
+
+
+**How to Categorize:**
+
+1. **Focus on the core purpose of the post:** Is it about immediate rewards for simple tasks? A new project launch? Updates on an ongoing project? Updates to a node? Or the outcome of a past event?
+2. **Look for key words and phrases:** "upcoming," "launch," "future," "beta," "waitlist," "early access," "complete all tasks," "submit address," "done!"  These can help you decide between "fast_airdrop," "new_project," and "update_project."
+3. **Consider the timeline:**  If the post is about something that has already happened and the focus is on rewards, it's likely a "result."  If it's about something that needs to be done to participate in a project, it could be a "fast_airdrop" or "update_project."
+4. **Pay attention to the technical details:** If the post is about instructions for setting up or maintaining a node, it's an "update_node."
+
+ATTENTION!!! Return please only key (example: keyword1, keyword2 etc)
+ATTENTION!!! Dont use extra/excess symbols and signs
+ATTENTION!!! Post have only 1 category!!!
+
+Post:

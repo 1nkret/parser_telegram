@@ -1,0 +1,22 @@
+{
+    "destination_channels": {
+        "new_node": 2,
+        "update_node": 4,
+        "irl_post": 6,
+        "result": 8,
+        "reminder": 10,
+        "other": 12,
+        "fast_airdrop": 14,
+        "new_project": 16,
+        "update_project": 18,
+        "actuality_project": 20
+    },
+    "allow_list": [
+        "new_node",
+        "update_node",
+        "result",
+        "fast_airdrop",
+        "new_project",
+        "update_project"
+    ]
+}
