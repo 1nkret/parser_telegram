@@ -33,8 +33,9 @@ async def handle_new_message(event):
 
 async def main():
     print("Client is running...")
-    await client.start(phone_number, password=input("Password: "))
-    print("\n"*100)
+    # await client.start(phone_number, password=input("Password: ")) # на случай если после ввода кода не пускает дальше
+    # print("\n"*100)
+    await client.start(phone_number)
     await client.run_until_disconnected()
 
 if __name__ == '__main__':
