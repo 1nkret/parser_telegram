@@ -9,6 +9,7 @@ Simply run this inside your Screen:
 And you need return only NAME of project:
 PWR
 
+ATTENTION!!! If you havent name of project (you cant find it) return Unnamed
 ATTENTION!!! Dont return message like: The project name is Memecore. #newproject (https://t.me/alabamaGeminiTest/2/188)
 you need return ONLY NAME!!!
 
