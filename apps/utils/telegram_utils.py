@@ -2,6 +2,10 @@ from asyncio import Lock
 from telethon import TelegramClient
 
 from apps.database.core import db
+from apps.utils.ai_utils import response_ai
+from apps.utils.json_loader import get_allow_list
+from apps.utils.read_prompt import read_title_prompt
+from apps.keyboards.new_project import new_project_keyboard
 
 db_lock = Lock()
 
@@ -9,14 +13,13 @@ db_lock = Lock()
 async def forward_message_to_channel(
         client: TelegramClient,
         event,
+        bot,
         category,
         target_channel,
         entity,
-        response_ai,
         link_message,
-        allow_list,
         destination_channels,
-        get_title_prompt,
+        bot_admins
 ):
     if event.message.photo:
         photo = await client.download_media(event.message.photo, file="media/")
@@ -36,34 +39,41 @@ async def forward_message_to_channel(
     await forward_to_actuality(
         client=client,
         event=event,
+        bot=bot,
         category=category,
         entity=entity,
         target_channel=target_channel,
         msg=msg,
-        allow_list=allow_list,
         destination_channels=destination_channels,
-        get_title_prompt=get_title_prompt,
-        response_ai=response_ai,
+        bot_admins=bot_admins
     )
 
 
 async def forward_to_actuality(
         client: TelegramClient,
         event,
+        bot,
         category,
         entity,
         target_channel,
         msg,
-        allow_list,
         destination_channels,
-        get_title_prompt,
-        response_ai,
+        bot_admins
 ):
-    if category in allow_list:
+    if category in get_allow_list():
         actuality = destination_channels.get("actuality_project")
         if actuality:
-            answer = response_ai(event.message.text, get_title_prompt).rstrip()
-            append_text = f"[{answer}]({entity}/{target_channel}/{msg.id})  #{category.replace('_', '')}"
+            answer = response_ai(event.message.text, read_title_prompt()).rstrip()
+            link = f"{entity}/{target_channel}/{msg.id}"
+            append_text = f"[{answer}]({link})  #{category.replace('_', '')}"
+
+            if answer == "Unnamed":
+                for admin in bot_admins:
+                    await bot.send_message(
+                        entity=admin,
+                        message=f"New unnamed project!\n({link})",
+                        buttons=new_project_keyboard(target_channel, msg.id)
+                    )
 
             async with db_lock:
                 response_db = db.read_all_documents({"name": answer})

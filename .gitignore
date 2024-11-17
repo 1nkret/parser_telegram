@@ -1,8 +1,10 @@
 .venv/
 media/
 .env
-session_name.session
-session_name.session-journal
+client.session
+client.session-journal
+bot.session
+bot.session-journal
 settings_save.json
 .idea/
 settings.json

@@ -5,6 +5,7 @@ from telethon import TelegramClient
 
 from apps.utils.ai_utils import response_ai
 from apps.utils.telegram_utils import forward_message_to_channel
+from apps.utils.read_prompt import read_category_prompt
 
 lock_parser = asyncio.Lock()
 
@@ -12,11 +13,10 @@ lock_parser = asyncio.Lock()
 async def parser(
         client: TelegramClient,
         event,
+        bot,
         last_processed_message_id,
         destination_channels,
-        allow_list,
-        get_category_prompt,
-        get_title_prompt,
+        bot_admins
 ):
     message = event.message
     if message.id == last_processed_message_id:
@@ -24,7 +24,7 @@ async def parser(
 
     category = response_ai(
         text=message.text,
-        prompt=get_category_prompt
+        prompt=read_category_prompt()
     ).rstrip()
     target_channel = destination_channels.get(category)
 
@@ -42,14 +42,13 @@ async def parser(
             await forward_message_to_channel(
                 client=client,
                 event=event,
+                bot=bot,
                 category=category,
                 target_channel=target_channel,
                 entity=entity,
-                response_ai=response_ai,
                 link_message=link_message,
-                allow_list=allow_list,
                 destination_channels=destination_channels,
-                get_title_prompt=get_title_prompt,
+                bot_admins=bot_admins
             )
             return message.id
         except Exception as e:
