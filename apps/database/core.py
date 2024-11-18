@@ -62,4 +62,5 @@ class MongoDatabase:
         return result.deleted_count
 
 
-db = MongoDatabase("HyanProject", "Actuals")
+db_actuals = MongoDatabase("HyanProject", "Actuals")
+db_unnamed = MongoDatabase("HyanProject", "Unnamed")

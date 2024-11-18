@@ -6,6 +6,7 @@ from telethon import TelegramClient
 from apps.utils.ai_utils import response_ai
 from apps.utils.telegram_utils import forward_message_to_channel
 from apps.utils.read_prompt import read_category_prompt
+from apps.utils.json_loader import get_dest_channels
 
 lock_parser = asyncio.Lock()
 
@@ -15,7 +16,7 @@ async def parser(
         event,
         bot,
         last_processed_message_id,
-        destination_channels,
+        entity,
         bot_admins
 ):
     message = event.message
@@ -26,12 +27,11 @@ async def parser(
         text=message.text,
         prompt=read_category_prompt()
     ).rstrip()
-    target_channel = destination_channels.get(category)
+    target_channel = get_dest_channels().get(category)
 
     if not target_channel:
         return
 
-    entity = getenv("ENTITY")
     link_message = f"\n\n{'=' * 20}\n**Link to [post](https://t.me/{event.chat.username}/{message.id})**"
 
     tries = 0
@@ -47,7 +47,6 @@ async def parser(
                 target_channel=target_channel,
                 entity=entity,
                 link_message=link_message,
-                destination_channels=destination_channels,
                 bot_admins=bot_admins
             )
             return message.id

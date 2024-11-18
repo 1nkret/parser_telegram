@@ -1,9 +1,9 @@
 from asyncio import Lock
 from telethon import TelegramClient
 
-from apps.database.core import db
+from apps.database.core import db_actuals
 from apps.utils.ai_utils import response_ai
-from apps.utils.json_loader import get_allow_list
+from apps.utils.json_loader import get_allow_list, get_dest_channels
 from apps.utils.read_prompt import read_title_prompt
 from apps.keyboards.new_project import new_project_keyboard
 
@@ -18,7 +18,6 @@ async def forward_message_to_channel(
         target_channel,
         entity,
         link_message,
-        destination_channels,
         bot_admins
 ):
     if event.message.photo:
@@ -44,7 +43,6 @@ async def forward_message_to_channel(
         entity=entity,
         target_channel=target_channel,
         msg=msg,
-        destination_channels=destination_channels,
         bot_admins=bot_admins
     )
 
@@ -57,11 +55,10 @@ async def forward_to_actuality(
         entity,
         target_channel,
         msg,
-        destination_channels,
         bot_admins
 ):
     if category in get_allow_list():
-        actuality = destination_channels.get("actuality_project")
+        actuality = get_dest_channels().get("actuality_project")
         if actuality:
             answer = response_ai(event.message.text, read_title_prompt()).rstrip()
             link = f"{entity}/{target_channel}/{msg.id}"
@@ -74,9 +71,10 @@ async def forward_to_actuality(
                         message=f"New unnamed project!\n({link})",
                         buttons=new_project_keyboard(target_channel, msg.id)
                     )
+                    return
 
             async with db_lock:
-                response_db = db.read_all_documents({"name": answer})
+                response_db = db_actuals.read_all_documents({"name": answer})
 
                 if response_db:
                     message_id = response_db[0].get("message_id")
@@ -87,7 +85,7 @@ async def forward_to_actuality(
 
                     text = f"{message_text}\n{count} | {append_text}"
 
-                    db.update_document(document_id, {"text": text})
+                    db_actuals.update_document(document_id, {"text": text})
                     await client.edit_message(
                         entity=entity,
                         message=message_id,
@@ -100,7 +98,7 @@ async def forward_to_actuality(
                         message=f"1 | {append_text}",
                         reply_to=actuality
                     )
-                    db.create_document(
+                    db_actuals.create_document(
                         {
                             "name": answer,
                             "message_id": actual_msg.id,
