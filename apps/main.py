@@ -7,7 +7,7 @@ from apps.keyboards.new_project import new_project_keyboard
 from apps.modules.forwarder import parser
 from apps.utils.json_loader import get_dest_channels
 from apps.keyboards.confirm import confirm_keyboard
-from apps.database.core import db_unnamed
+from apps.database.core import db_unnamed, db_actuals
 
 api_id = int(getenv("API_ID"))
 api_hash = getenv("API_HASH")
@@ -99,23 +99,41 @@ async def callback_handler(event):
 
     elif data.endswith("_give_name_actuality"):
         async with client.conversation(event.sender_id) as conv:
-            msg = await bot.send_message("Input name for this project:")
-            response = conv.get_response()
+            await event.edit_message(
+                message="Input name for this project:"
+            )
+            name = conv.get_response()
 
             msg_id = data.split("_")[0]
             pups = msg_id.split("/")
+            await event.edit_message(
+                message=f"Confirm name: **{name}**",
+                buttons=confirm_keyboard()
+            )
+            response = conv.wait_event(events.CallbackQuery)
+            db_response = db_unnamed.read_all_documents({"msg_id": msg_id})[0]
+            link = db_response.get("link")
 
-            db_unnamed.delete_document(msg_id)
+            if response.data == b"confirm_yes":
+                find_name = db_actuals.read_all_documents({"name": name})[0]
+                if find_name:
+                    find_name = find_name[0]
+                db_unnamed.delete_document(msg_id)
+            elif response.data == b"confirm_no":
+                await event.edit_message(
+                    message=f"New unnamed project!\n({link})",
+                    buttons=new_project_keyboard(pups[0], pups[1])
+                )
 
 
 async def main():
     print("Client is running...")
     # password = input("Passoword:")
-    await client.start(phone_number)
+    client.start(phone_number)
     print("Client is started.")
 
     print("Bot is running...")
-    await bot.start(bot_token=bot_token)
+    bot.start(bot_token=bot_token)
     print("Bot is started.")
 
     await asyncio.gather(
