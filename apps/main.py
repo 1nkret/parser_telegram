@@ -79,21 +79,33 @@ async def callback_handler(event):
         async with client.conversation(event.sender_id) as conv:
             await event.edit_message("Confirm", buttons=confirm_keyboard())
             response = conv.wait_event(events.CallbackQuery)
-            link = "link"
-            pups = data.split("_")[0].split("/")
 
-            if response.data == b"confirm_yes":
-                await event.edit_message(
-                    message=f"[Project]({link}) is deleted."
-                )
-            elif response.data == b"confirm_no":
-                await event.edit_message(
-                    message=f"New unnamed project!\n({link})",
-                    buttons=new_project_keyboard(pups[0], pups[1])
-                )
+            msg_id = data.split("_")[0]
+            pups = msg_id.split("/")
+            response_db = db_unnamed.read_all_documents({"msg_id": msg_id})[0]
+            if response_db:
+                link = response_db.get("link")
+
+                if response.data == b"confirm_yes":
+                    db_unnamed.delete_document(msg_id)
+                    await event.edit_message(
+                        message=f"[Project]({link}) is deleted."
+                    )
+                elif response.data == b"confirm_no":
+                    await event.edit_message(
+                        message=f"New unnamed project!\n({link})",
+                        buttons=new_project_keyboard(pups[0], pups[1])
+                    )
+
     elif data.endswith("_give_name_actuality"):
         async with client.conversation(event.sender_id) as conv:
-            await bot.send_message("Input name for this project:")
+            msg = await bot.send_message("Input name for this project:")
+            response = conv.get_response()
+
+            msg_id = data.split("_")[0]
+            pups = msg_id.split("/")
+
+            db_unnamed.delete_document(msg_id)
 
 
 async def main():
