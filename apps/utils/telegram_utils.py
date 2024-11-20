@@ -102,6 +102,7 @@ async def forward_to_actuality(
                         {
                             "name": answer,
                             "message_id": actual_msg.id,
-                            "text": f"1 | {append_text}"
+                            "text": f"1 | {append_text}",
+                            "category": category,
                         }
                     )

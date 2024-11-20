@@ -2,6 +2,7 @@ import asyncio
 
 from os import getenv
 from telethon import TelegramClient, events
+from unicodedata import category
 
 from apps.keyboards.new_project import new_project_keyboard
 from apps.modules.forwarder import parser
@@ -44,17 +45,17 @@ async def callback_handler(event):
 
     if data.endswith("_save_as_unnamed"):
         async with client.conversation(event.sender_id) as conv:
+            msg_id = data.split("_")[0]
+            pups = msg_id.split("/")
+            response_db = db_unnamed.read_all_documents({"msg_id": msg_id})
+
             await event.edit_message("Confirm", buttons=confirm_keyboard())
             response = conv.wait_event(events.CallbackQuery)
 
-            msg_id = data.split("_")[0]
-            pups = msg_id.split("/")
-            response_db = db_unnamed.read_all_documents({"msg_id": msg_id})[0]
-
             if response_db:
-                link = response_db.get("link")
-                category = response_db.get("category")
-                doc_id = response_db.get("_id")
+                link = response_db[0].get("link")
+                category = response_db[0].get("category")
+                doc_id = response_db[0].get("_id")
 
                 if response.data == b"confirm_yes":
                     actuality = get_dest_channels().get("actuality_project")
@@ -82,12 +83,13 @@ async def callback_handler(event):
 
             msg_id = data.split("_")[0]
             pups = msg_id.split("/")
-            response_db = db_unnamed.read_all_documents({"msg_id": msg_id})[0]
+            response_db = db_unnamed.read_all_documents({"msg_id": msg_id})
+
             if response_db:
                 link = response_db.get("link")
 
                 if response.data == b"confirm_yes":
-                    db_unnamed.delete_document(msg_id)
+                    db_unnamed.delete_document(response_db[0].get("_id"))
                     await event.edit_message(
                         message=f"[Project]({link}) is deleted."
                     )
@@ -111,19 +113,45 @@ async def callback_handler(event):
                 buttons=confirm_keyboard()
             )
             response = conv.wait_event(events.CallbackQuery)
-            db_response = db_unnamed.read_all_documents({"msg_id": msg_id})[0]
-            link = db_response.get("link")
+            db_response = db_unnamed.read_all_documents({"msg_id": msg_id})
 
-            if response.data == b"confirm_yes":
-                find_name = db_actuals.read_all_documents({"name": name})[0]
-                if find_name:
-                    find_name = find_name[0]
-                db_unnamed.delete_document(msg_id)
-            elif response.data == b"confirm_no":
-                await event.edit_message(
-                    message=f"New unnamed project!\n({link})",
-                    buttons=new_project_keyboard(pups[0], pups[1])
-                )
+            if db_response:
+                link = db_response[0].get("link")
+                category = db_response[0].get("category")
+                if response.data == b"confirm_yes":
+                    find_name = db_actuals.read_all_documents({"name": name})
+                    if find_name:
+                        count = find_name[0].get("text").count("\n")+2
+                        message_id = find_name[0].get("message_id")
+                        doc_id = find_name[0].get("_id")
+
+                        if category:
+                            text = f"{count} | [{name}]({link}) #{category}"
+                        else:
+                            text = f"{count} | {name}]({link})"
+                        new_text = find_name[0].get("text")+f"\n{text}"
+                        db_unnamed.delete_document(db_response[0].get("_id"))
+                        db_actuals.update_document(doc_id, new_text)
+
+                        await client.edit_message(
+                            entity=entity,
+                            message=message_id,
+                            text=text
+                        )
+                        await event.edit_message(
+                            message=f"Unnamed project renamed to [{name}]({link})",
+                        )
+                    else:
+                        await client.send_message(
+                            entity=entity,
+                            message=f"1 | [{name}]({link}) #{category}",
+                            reply_to=get_dest_channels().get("actuality_project")
+                        )
+                elif response.data == b"confirm_no":
+                    await event.edit_message(
+                        message=f"New unnamed project!\n({link})",
+                        buttons=new_project_keyboard(pups[0], pups[1])
+                    )
 
 
 async def main():
