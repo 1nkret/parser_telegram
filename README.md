@@ -9,6 +9,7 @@ This project is a Python-based Telegram bot built using the **Telethon** library
 - **Custom parsing logic** to handle message content.
 - **Environment configuration** using `.env` files.
 - **Prompts** for generating titles and categories using AI.
+- **Telegram Bot** for manage unnamed projects.
 
 ## Requirements
 - Python 3.8 or higher
@@ -35,11 +36,14 @@ This project is a Python-based Telegram bot built using the **Telethon** library
 
 4. **Create a `.env` file** in the root directory and add the following environment variables:
    ```env
-   API_ID=<your_api_id>
-   API_HASH=<your_api_hash>
-   PHONE_NUMBER=<your_phone_number>
+   API_ID=<id>
+   API_HASH=<hash>
+   PHONE_NUMBER=<+XXX-ph-one-numb>
    API_KEY_AI=<api_key_google_ai>
    ENTITY=<https://t.me/target_channel>
+   CHATS=<chat_to_parse>
+   BOT_TOKEN=<TOKENBOT>
+   BOT_ADMINS=<admin1_id,admin2_id,admin3_id...>
    ```
 
 ## Usage
@@ -48,13 +52,7 @@ This project is a Python-based Telegram bot built using the **Telethon** library
    python main.py
    ```
 2. **Input password** if prompted during startup.
-3. The bot will listen for new messages in specified source channels and forward them to the target channels based on your configuration.
-
-## Code Structure
-- **`main.py`**: The main script that initializes the `TelegramClient`, loads environment variables, and handles new message events.
-- **`apps/modules/forwarder.py`**: Contains the `parser` function that processes incoming messages and forwards them with specified logic.
-- **`apps/utils/json_loader.py`**: Functions for loading JSON configurations for destination channels and allow lists.
-- **`apps/utils/read_prompt.py`**: Functions for reading prompts for generating message titles and categories.
+3. The parser will listen for new messages in specified source channels and forward them to the target channels based on your configuration.
 
 ## How It Works
 1. The bot starts by creating a `TelegramClient` using API credentials from the `.env` file.
@@ -79,11 +77,6 @@ This project is a Python-based Telegram bot built using the **Telethon** library
 
 ## Dependencies
 - **Telethon**: For connecting to Telegram and handling message events.
+- **Aiogram**: For create bot and manage unnamed projects. 
+- **MongoDB**: Database for projects
 - **dotenv**: For loading environment variables from a `.env` file.
-
-## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
-## Contribution
-Feel free to contribute by opening issues or submitting pull requests. Ensure that any new features or changes are well-documented.
-
