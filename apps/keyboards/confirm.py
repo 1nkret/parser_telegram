@@ -1,17 +1,17 @@
-from telethon import Button
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
-def confirm_keyboard():
+def confirm_keyboard(msg_id, action="none"):
     buttons = [
         [
-            Button.inline(
+            InlineKeyboardButton(
                 text="Yes",
-                data="confirm_yes"
+                callback_data=f"{msg_id}_{action}_confirm_yes"
             ),
-            Button.inline(
+            InlineKeyboardButton(
                 text="No",
-                data="confirm_no"
+                callback_data=f"{msg_id}_{action}_confirm_no"
             )
         ]
     ]
-    return buttons
+    return InlineKeyboardMarkup(inline_keyboard=buttons)

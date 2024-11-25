@@ -1,26 +1,25 @@
-from telethon import Button
+from aiogram import types
 
 
 def new_project_keyboard(
-        target_channel,
         msg_id
 ):
     buttons = [
         [
-            Button.inline(
+            types.InlineKeyboardButton(
                 text="Call by name",
-                data=f"{target_channel}/{msg_id}_give_name_actuality"
+                callback_data=f"{msg_id}_give_name_actuality"
             ),
-            Button.inline(
+            types.InlineKeyboardButton(
                 text="Delete",
-                data=f"{target_channel}/{msg_id}_delete_actuality"
+                callback_data=f"{msg_id}_delete_actuality"
             ),
         ],
         [
-            Button.inline(
+            types.InlineKeyboardButton(
                 text="Save as unnamed",
-                data=f"{target_channel}/{msg_id}_save_as_unnamed"
+                callback_data=f"{msg_id}_save_as_unnamed"
             )
         ],
     ]
-    return buttons
+    return types.InlineKeyboardMarkup(inline_keyboard=buttons)

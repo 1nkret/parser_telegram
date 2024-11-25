@@ -1,10 +1,11 @@
 from asyncio import Lock
 from telethon import TelegramClient
 
-from apps.database.core import db_actuals
+from apps.database.core import db_actuals, db_unnamed
 from apps.utils.ai_utils import response_ai
 from apps.utils.json_loader import get_allow_list, get_dest_channels
 from apps.utils.read_prompt import read_title_prompt
+from apps.utils.escape_markdown import escape_markdown
 from apps.keyboards.new_project import new_project_keyboard
 
 db_lock = Lock()
@@ -66,10 +67,17 @@ async def forward_to_actuality(
 
             if answer == "Unnamed":
                 for admin in bot_admins:
+                    db_unnamed.create_document(
+                        {
+                            "msg_id": msg.id,
+                            "link": link,
+                            "category": category,
+                        }
+                    )
                     await bot.send_message(
-                        entity=admin,
-                        message=f"New unnamed project!\n({link})",
-                        buttons=new_project_keyboard(target_channel, msg.id)
+                        chat_id=admin,
+                        text=f"{msg.id} \\| New unnamed [project]({escape_markdown(link)})\\!",
+                        reply_markup=new_project_keyboard(msg.id)
                     )
                     return
 
