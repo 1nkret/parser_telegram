@@ -1,4 +1,5 @@
 import asyncio
+import logging
 
 from os import getenv
 
@@ -9,6 +10,7 @@ from telethon import TelegramClient, events
 from dotenv import load_dotenv
 
 from apps.utils.router_loader import load_routers
+from apps.utils.logger import load_logger
 from apps.modules.forwarder import parser
 
 load_dotenv()
@@ -45,14 +47,15 @@ async def handle_new_message(event):
 
 
 async def main():
-    print("Client is running...")
+    load_logger()
+    logging.info("Client is running...")
     await client.start(phone_number)
-    print("Client is ready.")
-    print("Bot is running...")
+    logging.info("Client is ready.")
+    logging.info("Bot is running...")
     dp.include_routers(
         load_routers()
     )
-    print("Bot is ready...")
+    logging.info("Bot is ready...")
 
     await asyncio.gather(
         client.run_until_disconnected(),
