@@ -11,5 +11,5 @@ async def start_handler(message: types.Message):
     if message.from_user.id in bot_admins:
         status = "Admin"
 
-    text = f"Hi there! Your status - {status}. "
+    text = f"Hi there\\! Your status \\- {status}\\."
     await message.answer(text)
