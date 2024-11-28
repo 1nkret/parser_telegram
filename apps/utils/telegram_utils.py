@@ -79,7 +79,7 @@ async def forward_to_actuality(
                         text=f"{msg.id} \\| New unnamed [project]({escape_markdown(link)})\\!",
                         reply_markup=new_project_keyboard(msg.id)
                     )
-                    return
+                return
 
             async with db_lock:
                 response_db = db_actuals.read_all_documents({"name": answer})
