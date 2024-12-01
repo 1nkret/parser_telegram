@@ -1,6 +1,7 @@
 from aiogram import Router, types
 from aiogram.filters import Command
 from apps.main import bot_admins
+from apps.handlers.start.keyboard import menu_keyboard
 
 router = Router()
 
@@ -12,4 +13,7 @@ async def start_handler(message: types.Message):
         status = "Admin"
 
     text = f"Hi there\\! Your status \\- {status}\\."
-    await message.answer(text)
+    await message.answer(
+        text=text,
+        reply_markup=menu_keyboard(status)
+    )
